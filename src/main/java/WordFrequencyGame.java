@@ -9,14 +9,10 @@ public class WordFrequencyGame {
             String[] wordArray = inputStr.split("\\s+");
 
             Map <String, Integer> wordCountMap = new HashMap<>();
-
             Arrays.stream(wordArray).forEach(word -> wordCountMap.merge(word, 1, Integer::sum));
 
             List<WordCountInfo> wordCountList = new ArrayList<>();
-            for (Map.Entry<String, Integer> entry : wordCountMap.entrySet()){
-                WordCountInfo wordCountInfo = new WordCountInfo(entry.getKey(), entry.getValue());
-                wordCountList.add(wordCountInfo);
-            }
+            wordCountMap.forEach((key, value) -> wordCountList.add(new WordCountInfo(key, value)));
 
             wordCountList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
