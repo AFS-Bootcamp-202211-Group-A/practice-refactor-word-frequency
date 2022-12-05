@@ -9,7 +9,7 @@ public class WordFrequencyGame {
             List<Input> inputList = splitInputStringToList(inputStr);
 
             //get the map for the next step of sizing the same word
-            Map<String, List<Input>> map =getListMap(inputList);
+            Map<String, List<Input>> map = groupInputByValue(inputList);
 
             List<Input> inputCountList = new ArrayList<>();
             map.forEach(((key, value) -> {
@@ -38,7 +38,7 @@ public class WordFrequencyGame {
     }
 
 
-    private Map<String,List<Input>> getListMap(List<Input> inputList) {
+    private Map<String,List<Input>> groupInputByValue(List<Input> inputList) {
         Map<String, List<Input>> listMap = new HashMap<>();
         inputList.forEach(input ->
                 listMap.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input)
