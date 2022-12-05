@@ -8,21 +8,27 @@ import java.io.CharArrayWriter;
 import java.time.LocalDateTime;
 
 public class WordFrequencyGame {
+
+    public static final String STRING_REGEX = "\\s+";
+    public static final int ONE = 1;
+    public static final String SINGLE_INTEGER_STRING = " 1";
+    public static final String CALCULATE_ERROR = "Calculate Error";
+
     public String getResult(String inputStr){
 
 
-        if (inputStr.split("\\s+").length==1) {
-            return inputStr + " 1";
+        if (inputStr.split(STRING_REGEX).length== ONE) {
+            return inputStr + SINGLE_INTEGER_STRING;
         } else {
 
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                String[] arr = inputStr.split("\\s+");
+                String[] arr = inputStr.split(STRING_REGEX);
 
                 List<Input> inputList = new ArrayList<>();
                 for (String s : arr) {
-                    Input input = new Input(s, 1);
+                    Input input = new Input(s, ONE);
                     inputList.add(input);
                 }
 
@@ -47,7 +53,7 @@ public class WordFrequencyGame {
             } catch (Exception e) {
 
 
-                return "Calculate Error";
+                return CALCULATE_ERROR;
             }
         }
     }
