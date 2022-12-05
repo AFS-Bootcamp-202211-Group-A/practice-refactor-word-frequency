@@ -7,13 +7,12 @@ public class WordCountInfo {
         this.count = count;
     }
 
-
-    public String getWord() {
-        return this.word;
-    }
-
     public int getWordCount() {
         return this.count;
+    }
+
+    public String getWordWithCount(){
+        return this.word + " " + this.count;
     }
 
 
