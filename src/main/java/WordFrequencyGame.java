@@ -9,10 +9,10 @@ public class WordFrequencyGame {
             List<Input> inputList = splitInputStringToList(inputStr);
 
             //get the map for the next step of sizing the same word
-            Map<String, List<Input>> map = groupInputByValue(inputList);
+            Map<String, List<Input>> groupedInput = groupInputByValue(inputList);
 
             List<Input> inputCountList = new ArrayList<>();
-            map.forEach(((key, value) -> {
+            groupedInput.forEach(((key, value) -> {
                 Input input = new Input(key, value.size());
                 inputCountList.add(input);
             }));
