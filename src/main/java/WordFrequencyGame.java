@@ -3,11 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.io.CharArrayWriter;
 import java.util.*;
-import java.util.stream.Collectors;
-
-import java.time.LocalDateTime;
 
 public class WordFrequencyGame {
 
@@ -20,11 +16,7 @@ public class WordFrequencyGame {
         } else {
 
             try {
-
-                //split the input string with 1 to n pieces of spaces
                 List<Input> inputList = splitInputString(inputStr);
-
-                //get the map for the next step of sizing the same word
                 return getMapForSizingSameWord(inputList);
 
             } catch (Exception e) {
