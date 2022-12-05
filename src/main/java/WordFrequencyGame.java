@@ -1,19 +1,17 @@
 import java.util.*;
-import java.io.CharArrayWriter;
 
-import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr) {
 
-        return inputStr.split("\\s+").length == 1?inputStr + " 1":getString(inputStr);
+        return inputStr.split("\\s+").length == 1 ? inputStr + " 1" : getCalculatedString(inputStr);
     }
 
-    private String getString(String inputStr) {
+    private String getCalculatedString(String inputStr) {
         try {
 
-            return getListMap(Arrays
+            return getStrListMap(Arrays
                     .stream(inputStr.split("\\s+"))
                     .map(str -> new Input(str, 1))
                     .collect(Collectors.toList()))
@@ -31,12 +29,12 @@ public class WordFrequencyGame {
     }
 
 
-    private Map<String, List<Input>> getListMap(List<Input> inputList) {
-        Map<String, List<Input>> map = new HashMap<>();
+    private Map<String, List<Input>> getStrListMap(List<Input> inputList) {
+        Map<String, List<Input>> listMap = new HashMap<>();
         inputList.stream().forEach(input -> {
-            map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
+            listMap.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
         });
-        return map;
+        return listMap;
     }
 
 
