@@ -10,42 +10,30 @@ public class WordFrequencyGame {
     public static final int ONE = 1;
     public static final String SINGLE_INTEGER_STRING = " 1";
     public static final String CALCULATE_ERROR = "Calculate Error";
+    public static final String SPACE_STRING = " ";
+    public static final String NEW_LINE_DELIMITER = "\n";
 
     public String getResult(String inputStr) {
-
-
         if (inputStr.split(STRING_REGEX).length == ONE) {
             return inputStr + SINGLE_INTEGER_STRING;
         } else {
-
             try {
-
                 List<Input> inputList = splitInputWithSpaces(inputStr);
-
-                //get the map for the next step of sizing the same word
-                Map<String, List<Input>> map = getListMap(inputList);
-
-                List<Input> list = new ArrayList<>();
-                for (Map.Entry<String, List<Input>> entry : map.entrySet()) {
-                    Input input = new Input(entry.getKey(), entry.getValue().size());
-                    list.add(input);
-                }
-                inputList = list;
-
-                inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
-
-                StringJoiner joiner = new StringJoiner("\n");
-                for (Input w : inputList) {
-                    String s = w.getWord() + " " + w.getWordCount();
-                    joiner.add(s);
-                }
-                return joiner.toString();
+                Map<String, List<Input>> listMap = getListMap(inputList);
+                return generateResult(listMap);
             } catch (Exception e) {
-
-
                 return CALCULATE_ERROR;
             }
         }
+    }
+
+    private static String generateResult(Map<String, List<Input>> listMap) {
+        return listMap.entrySet()
+                .stream()
+                .map(entry -> new Input(entry.getKey(), entry.getValue().size()))
+                .sorted((word1, word2) -> word2.getWordCount() - word1.getWordCount())
+                .map(input -> input.getWord() + SPACE_STRING + input.getWordCount())
+                .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
     private List<Input> splitInputWithSpaces(String inputStr) {
