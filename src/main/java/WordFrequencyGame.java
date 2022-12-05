@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.io.CharArrayWriter;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import java.time.LocalDateTime;
 
@@ -35,10 +37,8 @@ public class WordFrequencyGame {
     private List<Input> splitInputString(String inputStr){
         List<Input> inputList = new ArrayList<>();
         String[] arr = inputStr.split(SPACE_SPLITER);
-        for (String s : arr) {
-            Input input = new Input(s, 1);
-            inputList.add(input);
-        }
+        Arrays.stream(arr)
+                .forEach(word -> inputList.add(new Input(word, 1)));
         return inputList;
     }
 
