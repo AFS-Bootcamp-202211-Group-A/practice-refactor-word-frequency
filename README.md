@@ -8,3 +8,4 @@
 6. For loop replacement (with stream)
 7. Extract method
 8. Return statement
+9. Stream enhancement
