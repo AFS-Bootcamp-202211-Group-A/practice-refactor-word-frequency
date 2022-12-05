@@ -13,15 +13,19 @@ public class WordFrequencyGame {
 
             List<Input> inputCountList = countGroupByValueInput(groupByValueInput);
 
-            StringJoiner joiner = new StringJoiner("\n");
-            inputCountList
-                    .forEach(input ->
-                    joiner.add(input.getValue() + " " + input.getWordCount())
-            );
-            return joiner.toString();
+            return joinInputCountListString(inputCountList);
         } catch (Exception e) {
             return "Calculate Error";
         }
+    }
+
+    private String joinInputCountListString(List<Input> inputCountList) {
+        StringJoiner joiner = new StringJoiner("\n");
+        inputCountList
+                .forEach(input ->
+                joiner.add(input.getValue() + " " + input.getWordCount())
+        );
+        return joiner.toString();
     }
 
     private List<Input> countGroupByValueInput(Map<String, List<Input>> groupedInput) {
