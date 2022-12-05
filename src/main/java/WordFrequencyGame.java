@@ -12,23 +12,21 @@ public class WordFrequencyGame {
 
             Arrays.stream(wordArray).forEach(word -> wordCountMap.merge(word, 1, Integer::sum));
 
-            List<Input> inputList = new ArrayList<>();
+            List<WordCountInfo> wordCountList = new ArrayList<>();
             for (Map.Entry<String, Integer> entry : wordCountMap.entrySet()){
-                Input input = new Input(entry.getKey(), entry.getValue());
-                inputList.add(input);
+                WordCountInfo wordCountInfo = new WordCountInfo(entry.getKey(), entry.getValue());
+                wordCountList.add(wordCountInfo);
             }
 
-            inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+            wordCountList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
             StringJoiner joiner = new StringJoiner("\n");
-            for (Input word : inputList) {
+            for (WordCountInfo word : wordCountList) {
                 String wordWithCount = word.getWord() + " " +word.getWordCount();
                 joiner.add(wordWithCount);
             }
             return joiner.toString();
         } catch (Exception e) {
-
-
             return "Calculate Error";
         }
 
