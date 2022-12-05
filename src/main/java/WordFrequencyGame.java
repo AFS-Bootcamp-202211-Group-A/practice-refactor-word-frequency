@@ -11,11 +11,11 @@ public class WordFrequencyGame {
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                String[] arr = inputStr.split("\\s+");
+                String[] wordArray = inputStr.split("\\s+");
 
                 List<Input> inputList = new ArrayList<>();
-                for (String s : arr) {
-                    Input input = new Input(s, 1);
+                for (String word : wordArray) {
+                    Input input = new Input(word, 1);
                     inputList.add(input);
                 }
 
@@ -32,9 +32,9 @@ public class WordFrequencyGame {
                 inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
-                for (Input w : inputList) {
-                    String s = w.getValue() + " " +w.getWordCount();
-                    joiner.add(s);
+                for (Input word : inputList) {
+                    String wordWithCount = word.getWord() + " " +word.getWordCount();
+                    joiner.add(wordWithCount);
                 }
                 return joiner.toString();
             } catch (Exception e) {
@@ -50,14 +50,14 @@ public class WordFrequencyGame {
         Map<String, List<Input>> map = new HashMap<>();
         for (Input input :  inputList){
 //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!map.containsKey(input.getValue())){
-                ArrayList arr = new ArrayList<>();
-                arr.add(input);
-                map.put(input.getValue(), arr);
+            if (!map.containsKey(input.getWord())){
+                ArrayList wordArray = new ArrayList<>();
+                wordArray.add(input);
+                map.put(input.getWord(), wordArray);
             }
 
             else {
-                map.get(input.getValue()).add(input);
+                map.get(input.getWord()).add(input);
             }
         }
 
