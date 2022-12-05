@@ -1,6 +1,6 @@
 public class Input {
-    private String value;
-    private int count;
+    private final String value;
+    private final int count;
     public Input(String value, int count){
         this.value = value;
         this.count = count;

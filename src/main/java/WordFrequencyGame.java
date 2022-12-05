@@ -31,7 +31,7 @@ public class WordFrequencyGame {
         return inputCountList;
     }
     private List<Input> splitInputStringToList(String inputStr) {
-        String SPACES = "\\s+";
+        final String SPACES = "\\s+";
         return Arrays.stream(inputStr.split(SPACES))
                 .map(splitInputStr -> new Input(splitInputStr, 1))
                 .collect(Collectors.toList());
