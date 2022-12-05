@@ -23,12 +23,11 @@ public class WordFrequencyGame {
                 Input input = new Input(key, value.size());
                 inputCountList.add(input);
             }));
-            inputList = inputCountList;
 
-            inputList.sort((currInput, nextInput) -> nextInput.getWordCount() - currInput.getWordCount());
+            inputCountList.sort((currInput, nextInput) -> nextInput.getWordCount() - currInput.getWordCount());
 
             StringJoiner joiner = new StringJoiner("\n");
-            inputList.forEach(input ->
+            inputCountList.forEach(input ->
                     joiner.add(input.getValue() + " " + input.getWordCount())
             );
             return joiner.toString();
