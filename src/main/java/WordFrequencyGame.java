@@ -8,22 +8,17 @@ public class WordFrequencyGame {
 
     public static final String STRING_REGEX = "\\s+";
     public static final int ONE = 1;
-    public static final String SINGLE_INTEGER_STRING = " 1";
     public static final String CALCULATE_ERROR = "Calculate Error";
     public static final String SPACE_STRING = " ";
     public static final String NEW_LINE_DELIMITER = "\n";
 
     public String getResult(String inputStr) {
-        if (inputStr.split(STRING_REGEX).length == ONE) {
-            return inputStr + SINGLE_INTEGER_STRING;
-        } else {
-            try {
-                List<Input> inputList = splitInputWithSpaces(inputStr);
-                Map<String, List<Input>> listMap = getListMap(inputList);
-                return generateResult(listMap);
-            } catch (Exception e) {
-                return CALCULATE_ERROR;
-            }
+        try {
+            List<Input> inputList = splitInputWithSpaces(inputStr);
+            Map<String, List<Input>> listMap = getListMap(inputList);
+            return generateResult(listMap);
+        } catch (Exception e) {
+            return CALCULATE_ERROR;
         }
     }
 
