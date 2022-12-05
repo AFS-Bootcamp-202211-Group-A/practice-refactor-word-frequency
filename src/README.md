@@ -18,3 +18,4 @@ extract splitInputString method, getMapForSizingSameWord
 9.Extract joinWordList method
 10.list -> mappedWordlist, map -> wordListMap
 11.remove useless comments and unused import
+12.arr -> splitedInputStrArray, map -> wordListMap

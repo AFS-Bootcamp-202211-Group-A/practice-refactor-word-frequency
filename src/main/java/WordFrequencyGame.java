@@ -28,8 +28,8 @@ public class WordFrequencyGame {
 
     private List<Input> splitInputString(String inputStr){
         List<Input> inputList = new ArrayList<>();
-        String[] arr = inputStr.split(SPACE_SPLITER);
-        Arrays.stream(arr)
+        String[] splitedInputStrArray = inputStr.split(SPACE_SPLITER);
+        Arrays.stream(splitedInputStrArray)
                 .forEach(word -> inputList.add(new Input(word, 1)));
         return inputList;
     }
@@ -54,10 +54,10 @@ public class WordFrequencyGame {
     }
 
     private Map<String,List<Input>> getWordListMap(List<Input> inputList) {
-        Map<String, List<Input>> map = new HashMap<>();
+        Map<String, List<Input>> wordListMap = new HashMap<>();
         inputList.forEach(inputWord
-                -> map.computeIfAbsent(inputWord.getValue(), word -> new ArrayList<>()).add(inputWord));
-        return map;
+                -> wordListMap.computeIfAbsent(inputWord.getValue(), word -> new ArrayList<>()).add(inputWord));
+        return wordListMap;
     }
 
 
