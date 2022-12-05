@@ -13,6 +13,7 @@
         - line 33
         - line 40
     - duplicated code
+      - if else in getResult 
       - line 20 -34
     - unused code
       - WordFrequencyGame
