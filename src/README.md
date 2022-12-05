@@ -12,3 +12,5 @@ i -> wordCount
 extract splitInputString method, getMapForSizingSameWord
 6. Change loop in splitInputString to stream api
 7. Replace loop in getMapForSizingSameWord to stream api
+8. Rename getListMap to getWordListMap, and 
+   Replace loop in getWordListMap method to stream api
