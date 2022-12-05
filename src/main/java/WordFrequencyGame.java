@@ -6,11 +6,6 @@ import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr){
-
-        if (inputStr.split("\\s+").length==1) {
-            return inputStr + " 1";
-        }
-
         try {
 
             List<Input> inputList = splitString(inputStr);
@@ -27,7 +22,8 @@ public class WordFrequencyGame {
             inputCountList.sort((currInput, nextInput) -> nextInput.getWordCount() - currInput.getWordCount());
 
             StringJoiner joiner = new StringJoiner("\n");
-            inputCountList.forEach(input ->
+            inputCountList
+                    .forEach(input ->
                     joiner.add(input.getValue() + " " + input.getWordCount())
             );
             return joiner.toString();
