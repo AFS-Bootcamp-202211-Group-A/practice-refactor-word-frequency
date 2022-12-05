@@ -44,13 +44,6 @@ public class WordFrequencyGame {
     }
 
     private static List<Input> getInputs(String inputStr) {
-//        String[] arr = inputStr.split("\\s+");
-//        List<Input> inputList = new ArrayList<>();
-//        for (String s : arr) {
-//            Input input = new Input(s, 1);
-//            inputList.add(input);
-//        }
-//        return inputList;
         return Arrays.stream(inputStr.split("\\s+"))
                 .map(input -> new Input(input,1))
                 .collect(Collectors.toList());
