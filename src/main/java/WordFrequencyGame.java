@@ -1,11 +1,8 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 import java.io.CharArrayWriter;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr){
@@ -43,14 +40,9 @@ public class WordFrequencyGame {
 
     //split the input string with 1 to n pieces of spaces
     private List<Input> splitString(String inputStr) {
-        String[] arr = inputStr.split("\\s+");
-
-        List<Input> inputList = new ArrayList<>();
-        for (String s : arr) {
-            Input input = new Input(s, 1);
-            inputList.add(input);
-        }
-        return inputList;
+        return Arrays.stream(inputStr.split("\\s+"))
+                .map(splitInputStr -> new Input(splitInputStr, 1))
+                .collect(Collectors.toList());
     }
 
 
