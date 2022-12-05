@@ -11,3 +11,4 @@ i -> wordCount
 5.Too long method:
 extract splitInputString method, getMapForSizingSameWord
 6. Change loop in splitInputString to stream api
+7. Replace loop in getMapForSizingSameWord to stream api
