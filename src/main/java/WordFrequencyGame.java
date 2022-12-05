@@ -1,11 +1,8 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 import java.io.CharArrayWriter;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
@@ -23,14 +20,7 @@ public class WordFrequencyGame {
 
             try {
 
-                //split the input string with 1 to n pieces of spaces
-                String[] arr = inputStr.split(STRING_REGEX);
-
-                List<Input> inputList = new ArrayList<>();
-                for (String s : arr) {
-                    Input input = new Input(s, ONE);
-                    inputList.add(input);
-                }
+                List<Input> inputList = splitInputWithSpaces(inputStr);
 
                 //get the map for the next step of sizing the same word
                 Map<String, List<Input>> map =getListMap(inputList);
@@ -58,6 +48,24 @@ public class WordFrequencyGame {
         }
     }
 
+//    private List<Input> splitInputWithSpaces(String inputStr) {
+//        String[] arr = inputStr.split(STRING_REGEX);
+//
+//        List<Input> inputList = new ArrayList<>();
+//        for (String s : arr) {
+//            Input input = new Input(s, ONE);
+//            inputList.add(input);
+//        }
+//        return inputList;
+//    }
+
+    private List<Input> splitInputWithSpaces(String inputStr) {
+        return Arrays
+                .stream(inputStr.split(STRING_REGEX))
+                .map(str -> new Input(str,ONE))
+                .collect(Collectors.toList());
+    }
+
 
     private Map<String,List<Input>> getListMap(List<Input> inputList) {
         Map<String, List<Input>> map = new HashMap<>();
@@ -68,15 +76,13 @@ public class WordFrequencyGame {
                 arr.add(input);
                 map.put(input.getWord(), arr);
             }
-
             else {
                 map.get(input.getWord()).add(input);
             }
         }
-
-
         return map;
     }
+
 
 
 }
