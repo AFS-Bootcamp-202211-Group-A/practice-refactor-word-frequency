@@ -47,9 +47,10 @@ public class WordFrequencyGame {
         List<Input> list = new ArrayList<>();
 
         map.forEach((key, value) -> list.add(new Input(key, value.size())));
+        return joinWordList(list);
+    }
 
-        inputList = list;
-
+    private String joinWordList(List<Input> inputList){
         inputList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
 
         StringJoiner joiner = new StringJoiner("\n");
@@ -57,7 +58,6 @@ public class WordFrequencyGame {
         inputList.forEach(inputWord -> joiner
                 .add(String.format("%s %s"
                         ,inputWord.getValue(),inputWord.getWordCount())));
-
         return joiner.toString();
     }
 

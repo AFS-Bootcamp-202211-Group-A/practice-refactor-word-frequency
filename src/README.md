@@ -14,3 +14,5 @@ extract splitInputString method, getMapForSizingSameWord
 7. Replace loop in getMapForSizingSameWord to stream api
 8. Rename getListMap to getWordListMap, and 
    Replace loop in getWordListMap method to stream api
+   
+9.Extract joinWordList method
