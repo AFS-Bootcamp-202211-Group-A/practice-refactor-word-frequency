@@ -5,8 +5,6 @@ public class WordFrequencyGame {
     public String getResult(String inputStr){
             try {
                 List<Input> inputList = extractInputList(inputStr);
-
-                //get the map for the next step of sizing the same word
                 inputList = aggregateInputList(inputList);
                 inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
                 return printInputList(inputList);
