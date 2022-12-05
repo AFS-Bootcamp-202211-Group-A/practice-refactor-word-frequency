@@ -1,14 +1,12 @@
 import java.util.*;
-import java.io.CharArrayWriter;
 
-import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr){
         try {
 
-            List<Input> inputList = splitString(inputStr);
+            List<Input> inputList = splitInputStringToList(inputStr);
 
             //get the map for the next step of sizing the same word
             Map<String, List<Input>> map =getListMap(inputList);
@@ -33,7 +31,7 @@ public class WordFrequencyGame {
     }
 
     //split the input string with 1 to n pieces of spaces
-    private List<Input> splitString(String inputStr) {
+    private List<Input> splitInputStringToList(String inputStr) {
         return Arrays.stream(inputStr.split("\\s+"))
                 .map(splitInputStr -> new Input(splitInputStr, 1))
                 .collect(Collectors.toList());
