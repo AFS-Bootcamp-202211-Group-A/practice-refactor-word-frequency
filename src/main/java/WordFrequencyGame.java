@@ -6,19 +6,11 @@ import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr){
-
-
-        if (inputStr.split("\\s+").length==1) {
-            return inputStr + " 1";
-        }
-        else {
-            return getResultWhenLengthNotOne(inputStr);
-        }
+        return inputStr.split("\\s+").length==1 ? inputStr + " 1" : getResultWhenLengthNotOne(inputStr);
     }
 
     private String getResultWhenLengthNotOne(String inputStr) {
         try {
-
             //split the input string with 1 to n pieces of spaces
             List<Input> inputList = getInputs(inputStr);
 
@@ -35,8 +27,6 @@ public class WordFrequencyGame {
                     .map(input -> input.getValue() + " " + input.getWordCount())
                     .collect(Collectors.joining("\n"));
         } catch (Exception e) {
-
-
             return "Calculate Error";
         }
     }
@@ -55,19 +45,5 @@ public class WordFrequencyGame {
                     maps.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
                 });
         return maps;
-//        for (Input input :  inputList){
-//            if (!map.containsKey(input.getValue())){
-//                ArrayList arr = new ArrayList<>();
-//                arr.add(input);
-//                map.put(input.getValue(), arr);
-//            }
-//
-//            else {
-//                map.get(input.getValue()).add(input);
-//            }
-//        }
-//        return map;
     }
-
-
 }

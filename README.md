@@ -7,3 +7,4 @@
 5. For loop replacement (with stream)
 6. For loop replacement (with stream)
 7. Extract method
+8. Return statement
