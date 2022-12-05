@@ -19,19 +19,18 @@ public class WordFrequencyGame {
             Map<String, List<Input>> map =getListMap(inputList);
 
             List<Input> list = new ArrayList<>();
-            for (Map.Entry<String, List<Input>> entry : map.entrySet()){
-                Input input = new Input(entry.getKey(), entry.getValue().size());
+            map.forEach(((key, value) -> {
+                Input input = new Input(key, value.size());
                 list.add(input);
-            }
+            }));
             inputList = list;
 
             inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
             StringJoiner joiner = new StringJoiner("\n");
-            for (Input w : inputList) {
-                String s = w.getValue() + " " +w.getWordCount();
-                joiner.add(s);
-            }
+            inputList.forEach(input ->
+                    joiner.add(input.getValue() + " " + input.getWordCount())
+            );
             return joiner.toString();
         } catch (Exception e) {
             return "Calculate Error";
