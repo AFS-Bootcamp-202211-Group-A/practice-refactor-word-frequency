@@ -1,7 +1,4 @@
 import java.util.*;
-import java.io.CharArrayWriter;
-
-import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
@@ -34,10 +31,7 @@ public class WordFrequencyGame {
 
     private Map<String,List<Input>> getListMap(List<Input> inputList) {
         Map<String, List<Input>> maps = new HashMap<>();
-        inputList.stream()
-                .forEach(input -> {
-                    maps.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-                });
+        inputList.forEach(input -> maps.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input));
         return maps;
     }
 }
