@@ -8,3 +8,5 @@ i -> wordCount
 4.mysterious name:
     w1 -> word1
     w2 -> word2
+5.Too long method:
+extract splitInputString method, getMapForSizingSameWord
