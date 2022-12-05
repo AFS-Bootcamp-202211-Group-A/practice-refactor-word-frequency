@@ -12,6 +12,12 @@
         - line 58
         - line 33
         - line 4
-    - unused import
+    - duplicated code
+      - line 20 -34
+    - unused code
       - WordFrequencyGame
         - line 6, 8
+        - line 56
+    - comments
+      - line 17
+      - line 26
