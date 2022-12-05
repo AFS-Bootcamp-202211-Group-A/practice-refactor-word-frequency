@@ -13,7 +13,7 @@ public class WordFrequencyGame {
             }
     }
 
-    private static String printInputList(List<Input> inputList) {
+    private String printInputList(List<Input> inputList) {
         return inputList.stream()
                 .map(word -> word.getValue() + " " + word.getWordCount())
                 .collect(Collectors.joining("\n"));
@@ -28,7 +28,7 @@ public class WordFrequencyGame {
         return inputList;
     }
 
-    private static List<Input> extractInputList(String inputStr) {
+    private List<Input> extractInputList(String inputStr) {
         String[] arr = inputStr.split("\\s+");
         List<Input> inputList = Arrays.stream(arr)
                 .map(word -> new Input(word, 1))
