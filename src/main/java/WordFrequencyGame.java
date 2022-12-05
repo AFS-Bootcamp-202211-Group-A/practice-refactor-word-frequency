@@ -10,30 +10,34 @@ public class WordFrequencyGame {
 
         if (inputStr.split("\\s+").length==1) {
             return inputStr + " 1";
-        } else {
+        }
+        else {
+            return getResultWhenLengthNotOne(inputStr);
+        }
+    }
 
-            try {
+    private String getResultWhenLengthNotOne(String inputStr) {
+        try {
 
-                //split the input string with 1 to n pieces of spaces
-                List<Input> inputList = getInputs(inputStr);
+            //split the input string with 1 to n pieces of spaces
+            List<Input> inputList = getInputs(inputStr);
 
-                //get the map for the next step of sizing the same word
-                Map<String, List<Input>> map =getListMap(inputList);
+            //get the map for the next step of sizing the same word
+            Map<String, List<Input>> map =getListMap(inputList);
 
-                inputList = map.entrySet().stream()
-                        .map(entry -> new Input(entry.getKey(), entry.getValue().size()))
-                        .collect(Collectors.toList());
+            inputList = map.entrySet().stream()
+                    .map(entry -> new Input(entry.getKey(), entry.getValue().size()))
+                    .collect(Collectors.toList());
 
-                inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+            inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
-                return inputList.stream()
-                        .map(input -> input.getValue() + " " +input.getWordCount())
-                        .collect(Collectors.joining("\n"));
-            } catch (Exception e) {
+            return inputList.stream()
+                    .map(input -> input.getValue() + " " + input.getWordCount())
+                    .collect(Collectors.joining("\n"));
+        } catch (Exception e) {
 
 
-                return "Calculate Error";
-            }
+            return "Calculate Error";
         }
     }
 
