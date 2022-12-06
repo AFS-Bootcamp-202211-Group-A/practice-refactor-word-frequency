@@ -4,9 +4,7 @@ import java.util.stream.Collectors;
 public class WordFrequencyGame {
     public String getResult(String inputStr){
         try {
-            //split the input string with 1 to n pieces of spaces
             List<Input> inputList = getInputs(inputStr);
-            //get the map for the next step of sizing the same word
             Map<String, List<Input>> map =getListMap(inputList);
             return map.entrySet().stream()
                     .map(entry -> new Input(entry.getKey(), entry.getValue().size()))

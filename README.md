@@ -11,3 +11,5 @@
 9. Stream enhancement
 10. Lambda expression & remove useless import
 11. duplicated code if/else
+12. useless method
+13. useless comments
