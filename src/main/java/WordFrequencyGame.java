@@ -8,7 +8,7 @@ public class WordFrequencyGame {
             Map<String, List<Input>> map =getListMap(inputList);
             return map.entrySet().stream()
                     .map(entry -> new Input(entry.getKey(), entry.getValue().size()))
-                    .sorted((w1, w2) -> w2.getWordCount() - w1.getWordCount())
+                    .sorted((input1, input2) -> input2.getWordCount() - input1.getWordCount())
                     .map(input -> input.getValue() + " " + input.getWordCount())
                     .collect(Collectors.joining("\n"));
         } catch (Exception e) {

@@ -13,3 +13,4 @@
 11. duplicated code if/else
 12. useless method
 13. useless comments
+14. magic words
