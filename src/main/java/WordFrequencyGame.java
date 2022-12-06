@@ -3,10 +3,6 @@ import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr){
-        return getResultWhenLengthNotOne(inputStr);
-    }
-
-    private String getResultWhenLengthNotOne(String inputStr) {
         try {
             //split the input string with 1 to n pieces of spaces
             List<Input> inputList = getInputs(inputStr);
