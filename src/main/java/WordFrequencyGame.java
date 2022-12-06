@@ -2,6 +2,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
+
+
+
     public String getResult(String inputStr){
         try {
             List<Input> inputList = getInputs(inputStr);
@@ -17,7 +20,8 @@ public class WordFrequencyGame {
     }
 
     private static List<Input> getInputs(String inputStr) {
-        return Arrays.stream(inputStr.split("\\s+"))
+        final String SPACE = "\\s+";
+        return Arrays.stream(inputStr.split(SPACE))
                 .map(input -> new Input(input,1))
                 .collect(Collectors.toList());
     }

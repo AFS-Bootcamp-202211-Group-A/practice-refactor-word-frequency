@@ -14,3 +14,4 @@
 12. useless method
 13. useless comments
 14. magic words
+15. magic string
