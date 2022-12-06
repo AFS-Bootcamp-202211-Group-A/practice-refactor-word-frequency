@@ -2,6 +2,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
+
+    private static final String NEWLINE_CHARACTER = "\n";
+    private static final String WHITE_SPACE_REGEX = "\\s+";
+    private static final int COUNT = 1;
+
     public String getResult(String inputStr){
             try {
                 List<Input> inputList = extractInputList(inputStr);
@@ -16,7 +21,7 @@ public class WordFrequencyGame {
     private String printInputList(List<Input> inputList) {
         return inputList.stream()
                 .map(word -> word.getValue() + " " + word.getWordCount())
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(NEWLINE_CHARACTER));
     }
 
     private List<Input> aggregateInputList(List<Input> inputList) {
@@ -29,9 +34,9 @@ public class WordFrequencyGame {
     }
 
     private List<Input> extractInputList(String inputStr) {
-        String[] arr = inputStr.split("\\s+");
+        String[] arr = inputStr.split(WHITE_SPACE_REGEX);
         List<Input> inputList = Arrays.stream(arr)
-                .map(word -> new Input(word, 1))
+                .map(word -> new Input(word, COUNT))
                 .collect(Collectors.toList());
         return inputList;
     }
