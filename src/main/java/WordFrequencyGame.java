@@ -3,7 +3,7 @@ import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr){
-        return inputStr.split("\\s+").length==1 ? inputStr + " 1" : getResultWhenLengthNotOne(inputStr);
+        return getResultWhenLengthNotOne(inputStr);
     }
 
     private String getResultWhenLengthNotOne(String inputStr) {

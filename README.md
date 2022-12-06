@@ -9,4 +9,5 @@
 7. Extract method
 8. Return statement
 9. Stream enhancement
-10. Lambda expression & remove useless import 
+10. Lambda expression & remove useless import
+11. duplicated code if/else
