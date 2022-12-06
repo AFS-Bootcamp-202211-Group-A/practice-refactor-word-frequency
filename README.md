@@ -1,0 +1,24 @@
+1. Run Test
+2. Find Code Smell
+    - Mysterious name:
+      - Input
+        - line 5: w, i
+    - Long Method:
+      - WordFrequencyGame
+        - getResult method
+    - Loops
+      - WordFrequencyGame
+        - line 24
+        - line 58
+        - line 33
+        - line 40
+    - duplicated code
+      - if else in getResult 
+      - line 20 -34
+    - unused code
+      - WordFrequencyGame
+        - line 6, 8
+        - line 56
+    - comments
+      - line 17
+      - line 26
