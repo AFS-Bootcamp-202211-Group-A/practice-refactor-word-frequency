@@ -3,73 +3,61 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.io.CharArrayWriter;
-
-import java.time.LocalDateTime;
+import java.util.*;
 
 public class WordFrequencyGame {
+
+    public static final String SPACE_SPLITER = "\\s+";
+
     public String getResult(String inputStr){
 
-
-        if (inputStr.split("\\s+").length==1) {
+        if (inputStr.split(SPACE_SPLITER).length==1) {
             return inputStr + " 1";
         } else {
 
             try {
+                List<Input> inputList = splitInputString(inputStr);
+                return getMapForSizingSameWord(inputList);
 
-                //split the input string with 1 to n pieces of spaces
-                String[] arr = inputStr.split("\\s+");
-
-                List<Input> inputList = new ArrayList<>();
-                for (String s : arr) {
-                    Input input = new Input(s, 1);
-                    inputList.add(input);
-                }
-
-                //get the map for the next step of sizing the same word
-                Map<String, List<Input>> map =getListMap(inputList);
-
-                List<Input> list = new ArrayList<>();
-                for (Map.Entry<String, List<Input>> entry : map.entrySet()){
-                    Input input = new Input(entry.getKey(), entry.getValue().size());
-                    list.add(input);
-                }
-                inputList = list;
-
-                inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
-
-                StringJoiner joiner = new StringJoiner("\n");
-                for (Input w : inputList) {
-                    String s = w.getValue() + " " +w.getWordCount();
-                    joiner.add(s);
-                }
-                return joiner.toString();
             } catch (Exception e) {
-
 
                 return "Calculate Error";
             }
         }
     }
 
+    private List<Input> splitInputString(String inputStr){
+        List<Input> inputList = new ArrayList<>();
+        String[] splitedInputStrArray = inputStr.split(SPACE_SPLITER);
+        Arrays.stream(splitedInputStrArray)
+                .forEach(word -> inputList.add(new Input(word, 1)));
+        return inputList;
+    }
 
-    private Map<String,List<Input>> getListMap(List<Input> inputList) {
-        Map<String, List<Input>> map = new HashMap<>();
-        for (Input input :  inputList){
-//       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!map.containsKey(input.getValue())){
-                ArrayList arr = new ArrayList<>();
-                arr.add(input);
-                map.put(input.getValue(), arr);
-            }
+    private String getMapForSizingSameWord(List<Input> inputList){
+        Map<String, List<Input>> wordListMap =getWordListMap(inputList);
+        List<Input> mappedWordlist = new ArrayList<>();
 
-            else {
-                map.get(input.getValue()).add(input);
-            }
-        }
+        wordListMap.forEach((key, value) -> mappedWordlist.add(new Input(key, value.size())));
+        return joinWordList(mappedWordlist);
+    }
 
+    private String joinWordList(List<Input> inputList){
+        inputList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
 
-        return map;
+        StringJoiner joiner = new StringJoiner("\n");
+
+        inputList.forEach(inputWord -> joiner
+                .add(String.format("%s %s"
+                        ,inputWord.getValue(),inputWord.getWordCount())));
+        return joiner.toString();
+    }
+
+    private Map<String,List<Input>> getWordListMap(List<Input> inputList) {
+        Map<String, List<Input>> wordListMap = new HashMap<>();
+        inputList.forEach(inputWord
+                -> wordListMap.computeIfAbsent(inputWord.getValue(), word -> new ArrayList<>()).add(inputWord));
+        return wordListMap;
     }
 
 
