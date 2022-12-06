@@ -1,76 +1,46 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
-import java.io.CharArrayWriter;
+import java.util.*;
 
-import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr){
-
-
-        if (inputStr.split("\\s+").length==1) {
-            return inputStr + " 1";
-        } else {
-
-            try {
-
-                //split the input string with 1 to n pieces of spaces
-                String[] arr = inputStr.split("\\s+");
-
-                List<Input> inputList = new ArrayList<>();
-                for (String s : arr) {
-                    Input input = new Input(s, 1);
-                    inputList.add(input);
-                }
-
-                //get the map for the next step of sizing the same word
-                Map<String, List<Input>> map =getListMap(inputList);
-
-                List<Input> list = new ArrayList<>();
-                for (Map.Entry<String, List<Input>> entry : map.entrySet()){
-                    Input input = new Input(entry.getKey(), entry.getValue().size());
-                    list.add(input);
-                }
-                inputList = list;
-
-                inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
-
-                StringJoiner joiner = new StringJoiner("\n");
-                for (Input w : inputList) {
-                    String s = w.getValue() + " " +w.getWordCount();
-                    joiner.add(s);
-                }
-                return joiner.toString();
-            } catch (Exception e) {
-
-
-                return "Calculate Error";
-            }
+        try {
+            List<Input> inputList = splitInputStringToList(inputStr);
+            Map<String, List<Input>> groupByValueInput = groupInputByValue(inputList);
+            List<Input> inputCountList = countGroupByValueInput(groupByValueInput);
+            return joinInputCountListString(inputCountList);
+        } catch (Exception e) {
+            return "Calculate Error";
         }
     }
-
-
-    private Map<String,List<Input>> getListMap(List<Input> inputList) {
-        Map<String, List<Input>> map = new HashMap<>();
-        for (Input input :  inputList){
-//       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!map.containsKey(input.getValue())){
-                ArrayList arr = new ArrayList<>();
-                arr.add(input);
-                map.put(input.getValue(), arr);
-            }
-
-            else {
-                map.get(input.getValue()).add(input);
-            }
-        }
-
-
-        return map;
+    private String joinInputCountListString(List<Input> inputCountList) {
+        StringJoiner joiner = new StringJoiner("\n");
+        inputCountList
+                .forEach(input ->
+                joiner.add(input.getValue() + " " + input.getWordCount())
+        );
+        return joiner.toString();
     }
-
-
+    private List<Input> countGroupByValueInput(Map<String, List<Input>> groupedInput) {
+        List<Input> inputCountList = new ArrayList<>();
+        groupedInput.forEach(((key, value) -> {
+            Input input = new Input(key, value.size());
+            inputCountList.add(input);
+        }));
+        inputCountList.sort((currInput, nextInput) -> nextInput.getWordCount() - currInput.getWordCount());
+        return inputCountList;
+    }
+    private List<Input> splitInputStringToList(String inputStr) {
+        final String SPACES = "\\s+";
+        return Arrays.stream(inputStr.split(SPACES))
+                .map(splitInputStr -> new Input(splitInputStr, 1))
+                .collect(Collectors.toList());
+    }
+    private Map<String,List<Input>> groupInputByValue(List<Input> inputList) {
+        Map<String, List<Input>> listMap = new HashMap<>();
+        inputList.forEach(input ->
+                listMap.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input)
+        );
+        return listMap;
+    }
 }
