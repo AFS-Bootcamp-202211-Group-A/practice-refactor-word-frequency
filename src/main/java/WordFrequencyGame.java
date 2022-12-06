@@ -9,14 +9,18 @@ public class WordFrequencyGame {
         try {
             List<Input> inputList = getInputs(inputStr);
             Map<String, List<Input>> map =getListMap(inputList);
-            return map.entrySet().stream()
-                    .map(entry -> new Input(entry.getKey(), entry.getValue().size()))
-                    .sorted((input1, input2) -> input2.getWordCount() - input1.getWordCount())
-                    .map(input -> input.getValue() + " " + input.getWordCount())
-                    .collect(Collectors.joining("\n"));
+            return formatResult(map);
         } catch (Exception e) {
             return "Calculate Error";
         }
+    }
+
+    private static String formatResult(Map<String, List<Input>> map) {
+        return map.entrySet().stream()
+                .map(entry -> new Input(entry.getKey(), entry.getValue().size()))
+                .sorted((input1, input2) -> input2.getWordCount() - input1.getWordCount())
+                .map(input -> input.getValue() + " " + input.getWordCount())
+                .collect(Collectors.joining("\n"));
     }
 
     private static List<Input> getInputs(String inputStr) {
